@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  Hello IndexController!
+{% endblock %}
+
+{% block body %}
+  <div class="bg-white py-12">
+  <div class="container">
+    <h2 class="text-3xl md:text-4xl font-bold mb-10">
+      Unsere Projekte
+    </h2>
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 gap-6">
+        <div class="rounded-2xl overflow-hidden">
+            <img src='http://unsplash.it/300/300?gravity=center' class="w-full" alt=''/>    
+        </div>
+        <div class="rounded-2xl overflow-hidden">
+            <img src='http://unsplash.it/300/300?gravity=center' class="w-full" alt=''/>    
+        </div>
+        <div class="rounded-2xl overflow-hidden">
+            <img src='http://unsplash.it/300/300?gravity=center' class="w-full" alt=''/>    
+        </div>
+        <div class="rounded-2xl overflow-hidden">
+            <img src='http://unsplash.it/300/300?gravity=center' class="w-full" alt=''/>    
+        </div>
+        <div class="rounded-2xl overflow-hidden">
+            <img src='http://unsplash.it/300/300?gravity=center' class="w-full" alt=''/>    
+        </div>
+        <div class="rounded-2xl overflow-hidden">
+            <img src='http://unsplash.it/300/300?gravity=center' class="w-full" alt=''/>    
+        </div>
+        <div class="rounded-2xl overflow-hidden">
+            <img src='http://unsplash.it/300/300?gravity=center' class="w-full" alt=''/>    
+        </div>
+    </div>
+    </div>
+  </div>
+  <div class="py-12">
+    <div class="container">
+      <h2 class="text-3xl md:text-4xl font-bold mb-10">
+        Details und Anpassungen unserer Persenninge
+      </h2>
+      <div class="inline-flex" role="group">
+        <a href=""
+          class="inline-block rounded-l-full text-white text-lg leading-tight bg-goldenrod font-bold py-4 px-10">
+          Sprayhoods
+        </a>
+        <a href=""
+          class="inline-block rounded-r-full text-goldenrod text-lg leading-tight border border-goldenrod font-bold py-4 px-10">
+          Kuchenbuden
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="pt-12 bg-deep-sea text-white">
+    <div class="container md:flex">
+      <div class="md:w-1/2">
+        <div class="text-center md:text-left">
+          <h3 class="text-3xl md:text-4xl font-bold mb-5">
+            In wenigen Schritten zu Ihrer Anfrage
+          </h3>
+          <p class="mb-10">
+            Um Ihnen vor der ersten Besichtigung Ihres Bootes ein
+            unverbindliches Angebot zu machen, benötigen wir folgende
+            Informationen von Ihnen.
+          </p>
+
+          <a href=""
+            class="inline-block rounded-full text-white text-lg leading-tight bg-goldenrod font-bold py-4 px-10">
+            Zum Formular
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
