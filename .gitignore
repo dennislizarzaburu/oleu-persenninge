@@ -10,7 +10,9 @@
 
 ###> symfony/webpack-encore-bundle ###
 /node_modules/
-/public/build/
+#/public/build/ TODO: This can be readded, if a build process is implemented in CI/CD
 npm-debug.log
 yarn-error.log
 ###< symfony/webpack-encore-bundle ###
+
+.idea
