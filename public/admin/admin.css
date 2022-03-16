@@ -1,0 +1,37 @@
+:root {
+    --theme-goldenrod: #A36836;
+    --theme-ocean: #29626C;
+    --theme-caribbean: #238EA0;
+    --theme-deep-sea: #002B33;
+    --theme-sand: #EDE9E6;
+
+    --color-primary: var(--theme-caribbean);
+
+    --text-color: var(--theme-deep-sea);
+    --text-color-dark: var(--theme-deep-sea);
+    --sidebar-bg: var(--theme-deep-sea);
+    --sidebar-menu-color: white;
+    --sidebar-menu-active-item-bg: var(--theme-caribbean);
+    --sidebar-menu-icon-color: rgba(255,255,255,.6);
+    --sidebar-menu-active-item-color: white;
+    --sidebar-menu-header-color: rgba(255,255,255,.6);
+
+    --link-color: var(--theme-caribbean);
+    --form-switch-border-color: var(--theme-caribbean);
+    --form-switch-checked-bg: var(--theme-caribbean);
+    //--button-hover-color: white;
+}
+
+#header-logo svg {
+    width: 80%;
+}
+
+.form-switch .form-check-input {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3E%3Ccircle r='3' fill='rgba(35, 142, 160, 1)'/%3E%3C/svg%3E");
+}
+
+
+
+.ea-dark-scheme .form-switch .form-check-input:checked, .form-switch .form-check-input:checked {
+
+}

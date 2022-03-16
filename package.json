@@ -9,6 +9,7 @@
         "@symfony/stimulus-bridge": "^3.0.0",
         "@symfony/webpack-encore": "^1.7.0",
         "@tailwindcss/forms": "^0.5.0",
+        "@tailwindcss/typography": "^0.5.2",
         "core-js": "^3.0.0",
         "git-cz": "^4.8.0",
         "postcss-import": "^14.0.2",
@@ -17,6 +18,8 @@
         "sass": "^1.49.9",
         "sass-loader": "^12.6.0",
         "tailwindcss": "^3.0.23",
+        "vue-loader": "^17.0.0",
+        "vue-template-compiler": "^2.6.14",
         "webpack-notifier": "^1.6.0"
     },
     "license": "UNLICENSED",
@@ -28,6 +31,9 @@
         "build": "encore production --progress"
     },
     "dependencies": {
-        "@fontsource/lato": "^4.5.2"
+        "@fontsource/lato": "^4.5.2",
+        "alpinejs": "^3.9.1",
+        "swiper": "^8.0.7",
+        "vue": "^3.2.31"
     }
 }

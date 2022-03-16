@@ -1,42 +1,65 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Log in!{% endblock %}
+{% block title %}Login{% endblock %}
 
 {% block body %}
-<form method="post">
-    {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
+    <div class="bg-sand text-deep-sea py-40">
 
-    {% if app.user %}
-        <div class="mb-3">
-            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+        <div class="container">
+
+            <div class="max-w-sm mx-auto px-">
+
+                <form method="post">
+                    {% if error %}
+                        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    {% endif %}
+
+                    {% if app.user %}
+                        <div class="mb-3">
+                            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+                        </div>
+                    {% endif %}
+
+                    <h1 class="text-h2 font-bold mb-8">Anmeldung</h1>
+
+                    <div class="relative mb-5 text-goldenrod text-sm leading-4">
+                        <input type="text"
+                               value=""
+                               name="username"
+                               class="block w-full appearance-none focus:outline-none rounded-full px-6 pt-5 pb-3 border border-goldenrod bg-transparent"
+                               placeholder=" "
+                               required>
+                        <label class="absolute left-6 top-1/2 transform origin-top-left -translate-y-1/2 duration-300">Username</label>
+                    </div>
+                    <div class="relative mb-5 text-goldenrod text-sm leading-4">
+                        <input type="password"
+                               name="password"
+                               class="block w-full appearance-none focus:outline-none rounded-full px-6 pt-6 pb-2 border border-goldenrod bg-transparent"
+                               placeholder=" " autocomplete="current-password" required>
+                        <label class="absolute left-6 top-1/2 transform origin-top-left -translate-y-1/2 duration-300">Password</label>
+                    </div>
+
+                    <input type="hidden" name="_csrf_token"
+                           value="{{ csrf_token('authenticate') }}"
+                    >
+
+                    {#
+                    Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+                    See https://symfony.com/doc/current/security/remember_me.html
+
+                    <div class="checkbox mb-3">
+                        <label>
+                            <input type="checkbox" name="_remember_me"> Remember me
+                        </label>
+                    </div>
+                    #}
+
+                    <button class="block w-full rounded-full text-white text-lg leading-tight bg-goldenrod font-bold py-4 px-10"
+                            type="submit">
+                        Anmelden
+                    </button>
+                </form>
+            </div>
         </div>
-    {% endif %}
-
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputUsername">Username</label>
-    <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" autocomplete="username" required autofocus>
-    <label for="inputPassword">Password</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
-
-    <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"
-    >
-
-    {#
-        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-        See https://symfony.com/doc/current/security/remember_me.html
-
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" name="_remember_me"> Remember me
-            </label>
-        </div>
-    #}
-
-    <button class="btn btn-lg btn-primary" type="submit">
-        Sign in
-    </button>
-</form>
+    </div>
 {% endblock %}

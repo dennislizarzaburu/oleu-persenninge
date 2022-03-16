@@ -1,0 +1,58 @@
+products:
+  type:
+    kuchenbude: Kuchenbude
+    sprayhood: Sprayhood
+
+
+form:
+  fields:
+    firstname: Vorname
+    lastname: Nachname
+    email: E-Mailadresse
+    phone: Telefonnummer
+    gender:
+      male: Herr
+      female: Frau
+
+
+admin:
+  sections:
+    inquiries: Anfragen
+    content: Inhalte
+    admin: Administration
+  crud:
+    homepage: Zur Webseite
+    pages: Seiten
+    products: Produkte
+    projects: Projekte
+    admins: Benutzer
+    inquiries:
+      all: Alle Anfragen
+  roles:
+      ROLE_ADMIN: 'Admin'
+      ROLE_SUPER_ADMIN: 'Super Admin'
+  entity:
+    admin:
+      label:
+        singular: 'Benutzer'
+        plural: 'Benutzer'
+      username: 'Nutername'
+      email: 'E-Mail'
+      roles: 'Rollen'
+      plain_password: 'Klartext Passwort'
+    inquiry:
+      label:
+        singular: 'Anfrage'
+        plural: 'Anfragen'
+    page:
+      label:
+        singular: 'Seite'
+        plural: 'Seiten'
+    product:
+      label:
+        singular: 'Produkt'
+        plural: 'Produkte'
+    project:
+      label:
+        singular: 'Projekt'
+        plural: 'Projekte'

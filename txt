@@ -1,1 +1,0 @@
-symfony run mysql -c "INSERT INTO admin (id, username, roles, password, email) VALUES (nextval('admin_id_seq'), 'admin', '[\"ROLE_ADMIN\"]', '$2y$13$XbUZlmdvn.fXE8D7sz4oO.624aG55PxtpdxpfLBgsIq/og3DkHhmu ', 'mail@dennislizarzaburu.de')"

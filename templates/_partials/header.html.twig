@@ -1,0 +1,62 @@
+
+<div class="py-8 md:py-20">
+    <div class="container">
+        <div class="flex flex-row justify-between">
+            <div class="w-[173px] md:w-[178px]">
+                <a href="{{ path('app_index') }}">
+                    {% if body_style == 'dark' %}
+                        {% include '_partials/logos/default.html.twig' %}
+                    {% else %}
+                        {% include '_partials/logos/dark.html.twig' %}
+                    {% endif %}
+                </a>
+            </div>
+            <div class="md:hidden">
+                <div class="space-y-[3px] flex flex-col items-end" @click="menuOpen =! menuOpen">
+                    <div class="block w-[18px] h-0.5 {% if body_style == 'dark' %}bg-white{% else %}bg-deep-sea{% endif %}"></div>
+                    <div class="block w-2.5 h-0.5 {% if body_style == 'dark' %}bg-white{% else %}bg-deep-sea{% endif %}"></div>
+                    <div class="block w-[18px] h-0.5 {% if body_style == 'dark' %}bg-white{% else %}bg-deep-sea{% endif %}"></div>
+                </div>
+            </div>
+            <div class="hidden md:block">
+                {% if menu is defined and menu %}
+                    <ul class="space-x-14 flex flex-row font-bold text-sm">
+                        {% for headline, section in menu %}
+                            <li>
+                                <a href="{{ path('app_index') }}#{{ section }}">
+                                    {{ headline }}
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div x-data="{ count: 0 }">
+    <button x-on:click="count++">Increment</button>
+
+    <span x-text="count"></span>
+</div>
+
+<div class="hidden" :class="menuOpen ? 'fixed !block z-auto inset-y-0 right-0 w-4/5 bg-deep-sea h-screen w-screen' : ''">
+    <ul class="flex flex-col text-right px-8 gap-7 font-bold">
+        <li>
+        </li>
+        <li>
+        </li>
+        <li>
+            <a href="{{ path('app_page', {slug: 'datenschutz'}) }}" title="Datenschutz">
+                Datenschutz
+            </a>
+        </li>
+        <li>
+            <a href="{{ path('app_page', {slug: 'impressum'}) }}" title="Impressum">
+                Impressum
+            </a>
+        </li>
+    </ul>
+</div>

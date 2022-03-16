@@ -1,0 +1,37 @@
+{% use 'form_div_layout.html.twig' %}
+
+<div class="relative mb-5 text-goldenrod text-sm leading-4">
+    <input type="password"
+           name="password"
+           class="block w-full appearance-none focus:outline-none rounded-full px-6 pt-6 pb-2 border border-goldenrod bg-transparent"
+           placeholder=" " autocomplete="current-password" required>
+    <label class="absolute left-6 top-1/2 transform origin-top-left -translate-y-1/2 duration-300">Password</label>
+</div>
+
+{%- block form_row -%}
+    {%- set widget_attr = {} -%}
+    {%- if help is not empty -%}
+        {%- set widget_attr = {attr: {'aria-describedby': id ~"_help"}} -%}
+    {%- endif -%}
+    {%- set row_attr = row_attr|merge({ class: row_attr.class|default(row_class|default('mb-5')) }) -%}
+    <div{% with {attr: row_attr} %}{{ block('attributes') }}{% endwith %}>
+        <div class="relative text-goldenrod text-sm leading-4">
+            {{- form_widget(form, widget_attr) -}}
+            {{- form_label(form) -}}
+        </div>
+        {{- form_errors(form) -}}
+        {{- form_help(form) -}}
+    </div>
+{%- endblock form_row -%}
+
+{%- block widget_attributes -%}
+    {%- set attr = attr|merge({ placeholder: row_attr.placeholder|default(" "), class: attr.class|default(widget_class|default('block w-full appearance-none focus:outline-none rounded-full px-6 pt-6 pb-2 border border-goldenrod bg-transparent')) ~ (disabled ? ' ' ~ widget_disabled_class|default('border-gray-300 text-gray-500')) ~ (errors|length ? ' ' ~ widget_errors_class|default('border-red-700')) }) -%}
+    {{- parent() -}}
+{%- endblock widget_attributes -%}
+
+
+{%- block form_label -%}
+    {%- set label_attr = label_attr|merge({ class: label_attr.class|default(label_class|default('absolute left-6 top-1/2 transform origin-top-left -translate-y-1/2 duration-300')) }) -%}
+    {{- parent() -}}
+{%- endblock form_label -%}
+

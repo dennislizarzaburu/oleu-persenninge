@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ihre Unverbindliche Anfrage!{% endblock %}
+
+{% block body %}
+
+    <div class="py-6 bg-sand text-deep-sea">
+        <div class="container">
+            <div class="max-w-sm m-auto">
+
+                {{ form_start(form, {attr: {'novalidate': 'novalidate'}}) }}
+                    {{ form_errors(form) }}
+
+                    <div class="">
+                        <h3 class="text-h2 font-bold mb-8">Ihre Kontaktdaten</h3>
+                        {{ form_row(form.firstname) }}
+                        {{ form_row(form.lastname) }}
+                        {{ form_row(form.email) }}
+                        {{ form_row(form.phone) }}
+                        {{ form_row(form.gender) }}
+                    </div>
+
+                    <button class="block rounded-full text-goldenrod text-lg leading-tight border border-goldenrod font-bold py-4 px-10">
+                        Anfrage Absenden
+                    </button>
+
+                {{ form_end(form) }}
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}

@@ -2,5 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
+@import "@fontsource/lato/300-italic";
 @import "@fontsource/lato/400";
 @import "@fontsource/lato/700";
+@import "@fontsource/lato/900";
+
+input:focus-within ~ label,
+input:not(:placeholder-shown) ~ label {
+  @apply text-xxs -translate-y-4;
+}
+
+
+:root {
+  --swiper-pagination-color: #A36836;
+  --swiper-pagination-bullet-size: 8px;
+  --swiper-pagination-bullet-width: 8px;
+  --swiper-pagination-bullet-height: 8px;
+  --swiper-pagination-bullet-inactive-opacity: 1;
+  --swiper-pagination-bullet-horizontal-gap: 14px;
+}
+
+.swiper-pagination-bullet {
+  @apply bg-transparent border border-goldenrod rounded transition-all;
+
+  &.swiper-pagination-bullet-active {
+    @apply bg-goldenrod transform scale-125
+  }
+}

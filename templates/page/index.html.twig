@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ page.title }}{% endblock %}
+
+{% block body %}
+    <div class="bg-sand pb-20">
+        <div class="container">
+            <div class="prose prose-theme max-w-none">
+                {{ page.content | raw }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

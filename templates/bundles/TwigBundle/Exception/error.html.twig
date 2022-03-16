@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Fehler 404
+{% endblock %}
+
+{% block body %}
+
+    <div class="container mt-20 mb-40">
+        <span class="uppercase opacity-40 mb-4">Fehler 500</span>
+        <h1 class="text-h1">Es ist ein Fehler aufgetretten</h1>
+        <p class="mb-20"></p>
+
+        <a href="{{ path('app_index') }}"
+           class="inline-block rounded-full text-white text-lg leading-tight bg-goldenrod font-bold py-4 px-10">
+            Zur Startseite
+        </a>
+    </div>
+
+{% endblock %}
