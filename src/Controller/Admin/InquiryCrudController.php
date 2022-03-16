@@ -26,16 +26,6 @@ class InquiryCrudController extends AbstractCrudController
     {
         return $actions
             ->add(Action::INDEX, Action::DETAIL)
-            ->disable(Action::DELETE, Action::EDIT);
+            ->disable(Action::NEW, Action::DELETE, Action::EDIT);
     }
-    /*
-    public function configureFields(string $pageName): iterable
-    {
-        return [
-            IdField::new('id'),
-            TextField::new('title'),
-            TextEditorField::new('description'),
-        ];
-    }
-    */
 }
