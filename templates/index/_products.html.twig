@@ -1,0 +1,62 @@
+{% set types = {
+        'sprayhood': 'Sprayhood',
+        'kuchenbude': 'Kuchenbude'
+} %}
+<div id="details" class="bg-sand text-deep-sea py-12 md:py-16" x-data="{productSwiper: 'sprayhood'}">
+
+    <div class="container">
+        <h2 class="text-h2 font-bold mb-10 text-center md:max-w-[478px] md:mx-auto">
+            Details und Anpassungen unserer Persenninge
+        </h2>
+
+        <div class="flex justify-center mb-10 text-sm leading-tight font-bold" role="group">
+        {% for type, name in types %}
+            <span
+                @click="productSwiper = '{{ type }}'"
+                :class="productSwiper == '{{ type }}' ? 'text-white bg-goldenrod' : 'text-goldenrod'"
+               class="inline-block py-3 px-5 border border-goldenrod cursor-pointer transition {% if loop.first %}rounded-l-full{% elseif loop.last %}rounded-r-full{% endif%}">
+                {{ name }}
+            </span>
+            {% endfor %}
+        </div>
+    </div>
+
+    {% for type, name in types %}
+        <div class="swiper" id="{{ type }}" x-show="productSwiper == '{{ type }}'">
+            <div class="swiper-wrapper pb-16 md:pb-24">
+                {% for product in products %}
+                    {% if product.type == type %}
+                    <div class="swiper-slide h-auto">
+                        <div class="container">
+                            <div class="h-full flex flex-col md:flex-row md:items-center md:justify-center">
+                                <div class="mb-5 md:mb-0 md:order-2 md:max-w-[415px]">
+                                    {% if product.image is defined and product.image %}
+                                        <img src="/uploads/products/{{ product.image }}" alt="{{ product.title }}" />
+                                    {% endif %}
+                                </div>
+                                <div class="text-center md:text-left md:mr-16 md:max-w-[310px]">
+                                    <h3 class="text-h3 font-bold mb-5">{{ product.title }}</h3>
+                                    {{ product.content | raw }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div class="swiper-pagination"></div>
+
+            <div class="swiper-button-prev hidden lg:block">
+                <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13.1875 0.523438L13.5703 0.90625C13.8438 1.17969 13.8438 1.5625 13.5703 1.83594L3.83594 11.5703H24.3438C24.7266 11.5703 25 11.8984 25 12.2266V12.7734C25 13.1562 24.7266 13.4297 24.3438 13.4297H3.83594L13.5703 23.2188C13.8438 23.4922 13.8438 23.875 13.5703 24.1484L13.1875 24.5312C12.9141 24.8047 12.5312 24.8047 12.2578 24.5312L0.71875 12.9922C0.445312 12.7188 0.445312 12.3359 0.71875 12.0625L12.2578 0.523438C12.5312 0.25 12.9141 0.25 13.1875 0.523438Z" fill="#A36836"/>
+                </svg>
+            </div>
+            <div class="swiper-button-next hidden lg:block">
+                <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M11.8125 0.523438L11.4297 0.90625C11.1562 1.17969 11.1562 1.5625 11.4297 1.83594L21.1641 11.5703H0.65625C0.273438 11.5703 0 11.8984 0 12.2266V12.7734C0 13.1562 0.273438 13.4297 0.65625 13.4297H21.1641L11.4297 23.2188C11.1562 23.4922 11.1562 23.875 11.4297 24.1484L11.8125 24.5312C12.0859 24.8047 12.4688 24.8047 12.7422 24.5312L24.2812 12.9922C24.5547 12.7188 24.5547 12.3359 24.2812 12.0625L12.7422 0.523438C12.4688 0.25 12.0859 0.25 11.8125 0.523438Z" fill="#A36836"/>
+                </svg>
+            </div>
+        </div>
+    {% endfor %}
+
+</div>

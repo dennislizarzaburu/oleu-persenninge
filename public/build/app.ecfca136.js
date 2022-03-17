@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunk=self.webpackChunk||[]).push([[143],{536:(e,n,t)=>{var i=t(257),p=(new i.ZP(".swiper",{modules:[i.W_,i.tl],pagination:{el:".swiper-pagination"},navigation:{nextEl:".swiper-button-next",prevEl:".swiper-button-prev"}}),t(306));window.Alpine=p.Z,p.Z.start()}},e=>{e.O(0,[999],(()=>{return n=536,e(e.s=n);var n}));e.O()}]);

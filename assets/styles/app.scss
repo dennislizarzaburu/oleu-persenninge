@@ -18,6 +18,7 @@ input:not(:placeholder-shown) ~ label {
   --swiper-pagination-bullet-size: 8px;
   --swiper-pagination-bullet-width: 8px;
   --swiper-pagination-bullet-height: 8px;
+  --swiper-pagination-bullet-inactive-color: transparent;
   --swiper-pagination-bullet-inactive-opacity: 1;
   --swiper-pagination-bullet-horizontal-gap: 14px;
 }
@@ -27,5 +28,42 @@ input:not(:placeholder-shown) ~ label {
 
   &.swiper-pagination-bullet-active {
     @apply bg-goldenrod transform scale-125
+  }
+}
+
+
+.swiper-button-next:after, .swiper-button-prev:after {
+  @apply font-sans;
+  content: '' !important;
+}
+
+.swiper-button-next.swiper-button-disabled, .swiper-button-prev.swiper-button-disabled {
+  @apply opacity-40
+}
+
+.swiper-button-prev, .swiper-rtl .swiper-button-next {
+  left: 50% !important;
+
+  @screen lg {
+    transform: translateX(-(1024px / 2) + 30px);
+  }
+  @screen xl {
+    transform: translateX(-(1280px / 2) );
+  }
+  @screen 2xl {
+    transform: translateX(-(1280px / 2));
+  }
+}
+.swiper-button-next, .swiper-rtl .swiper-button-prev {
+  right: 50% !important;
+
+  @screen lg {
+    transform: translateX((1024px / 2) - 30px);
+  }
+  @screen xl {
+    transform: translateX((1280px / 2) );
+  }
+  @screen 2xl {
+    transform: translateX((1280px / 2));
   }
 }
