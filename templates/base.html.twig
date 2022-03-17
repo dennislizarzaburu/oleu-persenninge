@@ -12,6 +12,9 @@
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     </head>
     {% if block('body_style') is defined and block('body_style') == 'dark' %}
         {% set body_style = 'dark' %}
