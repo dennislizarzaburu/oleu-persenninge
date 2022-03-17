@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="h-full" x-data="{ offCanvas: false }">
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}{% endblock %} | Oleu Persenninge</title>
@@ -18,7 +18,7 @@
     {% else %}
         {% set body_style = 'light' %}
     {% endif %}
-    <body x-data="{ menuOpen: false }" class="{% if body_style == 'dark' %}bg-deep-sea text-white{% else %}bg-sand text-deep-sea{% endif %} text-base antialiased">
+    <body  :class="offCanvas ? 'overflow-hidden' : ''" class="h-full {% if body_style == 'dark' %}bg-deep-sea text-white{% else %}bg-sand text-deep-sea{% endif %} text-base antialiased">
 
         {% set menu = {
             'Über uns': 'ueber-uns',
@@ -27,6 +27,7 @@
             'Weiteres': 'weiteres',
         } %}
 
+        {% include '_partials/off-canvas.html.twig' with { body_style: body_style } %}
         {% include '_partials/header.html.twig' with { body_style: body_style } %}
         {% block body %}{% endblock %}
         {% include '_partials/footer.html.twig' %}

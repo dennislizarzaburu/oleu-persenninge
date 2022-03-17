@@ -1,8 +1,9 @@
 {
-  "build/app.css": "/build/app.48f00236.css",
-  "build/app.js": "/build/app.ecfca136.js",
-  "build/runtime.js": "/build/runtime.2b4637a8.js",
-  "build/999.541dd676.js": "/build/999.541dd676.js",
+  "build/app.css": "/build/app.css",
+  "build/app.js": "/build/app.js",
+  "build/runtime.js": "/build/runtime.js",
+  "build/vendors-node_modules_alpinejs_dist_module_esm_js-node_modules_swiper_modules_navigation_navig-d204eb.css": "/build/vendors-node_modules_alpinejs_dist_module_esm_js-node_modules_swiper_modules_navigation_navig-d204eb.css",
+  "build/vendors-node_modules_alpinejs_dist_module_esm_js-node_modules_swiper_modules_navigation_navig-d204eb.js": "/build/vendors-node_modules_alpinejs_dist_module_esm_js-node_modules_swiper_modules_navigation_navig-d204eb.js",
   "build/fonts/lato-all-400-normal.woff": "/build/fonts/lato-all-400-normal.3dc1eff4.woff",
   "build/fonts/lato-all-700-normal.woff": "/build/fonts/lato-all-700-normal.1e7707c9.woff",
   "build/fonts/lato-all-900-normal.woff": "/build/fonts/lato-all-900-normal.67cce647.woff",
