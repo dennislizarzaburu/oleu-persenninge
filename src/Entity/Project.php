@@ -6,7 +6,6 @@ use App\Repository\ProjectRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: ProjectRepository::class)]
 class Project
@@ -22,7 +21,7 @@ class Project
     #[ORM\Column(type: 'boolean')]
     private $enabled;
 
-    #[ORM\OneToMany(mappedBy: 'project', targetEntity: Image::class)]
+    #[ORM\OneToMany(mappedBy: 'project', targetEntity: ProjectImage::class, cascade:['persist'])]
     private $images;
 
     public function __construct()
@@ -60,14 +59,14 @@ class Project
     }
 
     /**
-     * @return Collection<int, Image>
+     * @return Collection<int, ProjectImage>
      */
     public function getImages(): Collection
     {
         return $this->images;
     }
 
-    public function addImage(Image $image): self
+    public function addImage(ProjectImage $image): self
     {
         if (!$this->images->contains($image)) {
             $this->images[] = $image;
@@ -77,7 +76,7 @@ class Project
         return $this;
     }
 
-    public function removeImage(Image $image): self
+    public function removeImage(ProjectImage $image): self
     {
         if ($this->images->removeElement($image)) {
             // set the owning side to null (unless already changed)
@@ -88,4 +87,5 @@ class Project
 
         return $this;
     }
+
 }

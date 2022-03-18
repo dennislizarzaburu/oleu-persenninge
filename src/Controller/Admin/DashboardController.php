@@ -7,6 +7,7 @@ use App\Entity\Inquiry;
 use App\Entity\Page;
 use App\Entity\Product;
 use App\Entity\Project;
+use App\Entity\ProjectImage;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Assets;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
 use EasyCorp\Bundle\EasyAdminBundle\Config\MenuItem;
