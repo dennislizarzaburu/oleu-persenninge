@@ -7,6 +7,36 @@
 @import "@fontsource/lato/700";
 @import "@fontsource/lato/900";
 
+
+.bg-hero {
+  background-image: url("/assets/images/hero/hero.jpg");
+  background-size: auto 1000px;
+  background-repeat: no-repeat;
+
+  @screen xs {
+    background-image: url("/assets/images/hero/hero-sm.jpg");
+  }
+
+  @screen sm {
+    background-image: url("/assets/images/hero/hero-md.jpg");
+  }
+  @screen md {
+    background-image: url("/assets/images/hero/hero-lg.jpg");
+  }
+  @screen lg {
+    background-image: url("/assets/images/hero/hero-xl.jpg");
+  }
+  @screen xl {
+    background-image: url("/assets/images/hero/hero-2xl.jpg");
+  }
+}
+
+.bg-footer {
+  background-image: url("/assets/images/footer/boot-corner.png");
+  background-position: right bottom;
+  background-repeat: no-repeat;
+}
+
 input:focus-within ~ label,
 input:not(:placeholder-shown) ~ label {
   @apply text-xxs -translate-y-4;

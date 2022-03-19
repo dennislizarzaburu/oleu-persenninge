@@ -4,6 +4,10 @@ module.exports = {
     mode: 'jit',
     content: ["./templates/**/*.{twig,html,js}"],
     theme: {
+        screens: {
+            'xs': '376px',
+            ...defaultTheme.screens,
+        },
         container: {
             center: true,
             padding: '20px',
