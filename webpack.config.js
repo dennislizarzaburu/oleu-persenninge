@@ -1,4 +1,6 @@
 const Encore = require('@symfony/webpack-encore');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
+
 
 const tailwindcss = require('tailwindcss');
 
@@ -70,7 +72,7 @@ Encore
     // uncomment if you use TypeScript
     //.enableTypeScriptLoader()
 
-    .enableVueLoader()
+    //.enableVueLoader()
 
     // uncomment if you use React
     //.enableReactPreset()
@@ -83,4 +85,9 @@ Encore
     //.autoProvidejQuery()
 ;
 
+Encore.addPlugin(
+    new FaviconsWebpackPlugin({
+        logo: './assets/images/favicon.svg',
+    })
+);
 module.exports = Encore.getWebpackConfig();
