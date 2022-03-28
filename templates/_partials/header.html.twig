@@ -11,7 +11,7 @@
                 </a>
             </div>
             <div class="md:hidden">
-                <div class="space-y-[3px] flex flex-col items-end cursor-pointer" @click="offCanvas =! offCanvas">
+                <div class="space-y-[3px] flex flex-col items-end cursor-pointer" @click="offCanvas =! offCanvas; bodyLocked =! bodyLocked;">
                     <div class="block w-[18px] h-0.5 {% if body_style == 'dark' %}bg-white{% else %}bg-deep-sea{% endif %}"></div>
                     <div class="block w-2.5 h-0.5 {% if body_style == 'dark' %}bg-white{% else %}bg-deep-sea{% endif %}"></div>
                     <div class="block w-[18px] h-0.5 {% if body_style == 'dark' %}bg-white{% else %}bg-deep-sea{% endif %}"></div>

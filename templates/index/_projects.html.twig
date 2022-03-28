@@ -1,10 +1,11 @@
-<div x-data="{
+<div x-data='{
     modal: false,
-    image: null
-}">
-
-    {% if projects is defined and projects %}
-        <div class="bg-white text-deep-sea py-12" id="unsere-projekte" x-data="{ project: '{{ projects.0.id }}' }">
+    projects: {{ projectsJson | raw }},
+    activeProject: null,
+    activeImage: null,
+}'>
+    {% if projectsJson is defined and projectsJson %}
+        <div class="bg-white text-deep-sea py-12" id="unsere-projekte">
             <div class="container">
                 <h2 class="text-h2 font-bold mb-9 md:mb-18 md:text-center">
                     Unsere Projekte
@@ -12,83 +13,78 @@
 
                 <div class="mb-9 md:mb-18 overflow-x-scroll">
                     <ul class="space-x-5 flex flex-row flex-nowrap text-goldenrod text-sm md:justify-center">
-                        {% for project in projects %}
+                        <template x-for="navProject in projects">
                             <li>
-                            <span
-                                    @click="project = '{{ project.id }}'"
-                                    :class="project == '{{ project.id }}' ? 'font-bold' : ''"
-                                    class="cursor-pointer"
-                            >
-                                {{ project.title }}
-                            </span>
+                                <span
+                                        x-text="navProject.title"
+                                        @click="activeProject = navProject"
+                                        :class="activeProject === navProject ? 'font-bold' : ''"
+                                        class="cursor-pointer"
+                                ></span>
                             </li>
-                        {% endfor %}
+                        </template>
                     </ul>
                 </div>
 
-                {% for project in projects %}
-                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 md:gap-6"
-                         x-show="project == '{{ project.id }}'">
-
-                        {% for projectImage in project.images %}
-                            {% if loop.index <= 6 %}
+                <template x-for="(project, index) in projects">
+                    <div x-show="activeProject === project" x-init="if(index == 1) { activeProject = project }">
+                        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 md:gap-6">
+                            <template x-for="image in project.images">
                                 <div class="rounded-2xl overflow-hidden aspect-square">
-                                    <img src="{{ vich_uploader_asset(projectImage, 'imageFile') }}"
-                                         @click="modal = '{{ project.id }}'; image = { id: '{{ projectImage.id }}', detail: '{{ vich_uploader_asset(projectImage, 'imageFile') }}', content: '{{ projectImage.content }}'}"
-                                         class="w-full h-full object-cover cursor-pointer" alt=""/>
+                                    <img x-bind:src="image.preview"
+                                         class="w-full h-full object-cover cursor-pointer" alt=""
+                                         @click="modal = true; bodyLocked = true; activeImage = image;"
+                                    />
                                 </div>
-                            {% endif %}
-                            {% if loop.index == 6 %}
-                                Mehr anzeigen
-                            {% endif %}
-                        {% endfor %}
+                            </template>
+                        </div>
                     </div>
+                </template>
 
-                    <div class="fixed z-10 inset-0 overflow-y-auto"
-                         x-show="modal == '{{ project.id }}'">
-                        <div class="flex items-end justify-center min-h-screen text-center sm:block">
-                            <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
-                                 x-show="modal"
-                                 x-transition:enter="ease-out duration-300"
-                                 x-transition:enter-start="opacity-0"
-                                 x-transition:enter-end="opacity-100"
-                                 x-transition:leave="ease-in duration-200"
-                                 x-transition:leave-start="opacity-100"
-                                 x-transition:leave-end="opacity-0"
-                                 @click="modal = null"
-                                 aria-hidden="true"></div>
 
-                            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+                <div class="fixed z-10 inset-0 overflow-y-auto"
+                     x-show="modal">
+                    <div class="flex items-end justify-center min-h-screen text-center sm:block">
+                        <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
+                             x-show="modal"
+                             x-transition:enter="ease-out duration-300"
+                             x-transition:enter-start="opacity-0"
+                             x-transition:enter-end="opacity-100"
+                             x-transition:leave="ease-in duration-200"
+                             x-transition:leave-start="opacity-100"
+                             x-transition:leave-end="opacity-0"
+                             @click="modal = null; bodyLocked = false;"
+                             aria-hidden="true"></div>
 
-                            <div class="relative inline-block align-bottom bg-white rounded-t-[40px] sm:rounded-b-[40px] p-7 text-left overflow-hidden shadow-xl transform transition-all sm:align-middle sm:max-w-xl sm:w-full"
-                                 x-show="modal == '{{ project.id }}'"
-                                 x-transition:enter="ease-out duration-300"
-                                 x-transition:enter-start="opacity-0 translate-y-full"
-                                 x-transition:enter-end="opacity-100 translate-y-0"
-                                 x-transition:leave="ease-in duration-200"
-                                 x-transition:leave-start="opacity-100 translate-y-0"
-                                 x-transition:leave-end="opacity-0 translate-y-full"
-                            >
-                                <div class="flex justify-between flex-nowrap items-center">
-                                    <div class="">
+                        <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+
+                        <div class="relative inline-block align-bottom bg-white rounded-t-[40px] sm:rounded-b-[40px] p-7 text-left overflow-hidden shadow-xl transform transition-all sm:align-middle sm:max-w-xl sm:w-full"
+                             x-show="modal"
+                             x-transition:enter="ease-out duration-300"
+                             x-transition:enter-start="opacity-0 translate-y-full"
+                             x-transition:enter-end="opacity-100 translate-y-0"
+                             x-transition:leave="ease-in duration-200"
+                             x-transition:leave-start="opacity-100 translate-y-0"
+                             x-transition:leave-end="opacity-0 translate-y-full"
+                        >
+                            <div class="flex justify-between flex-nowrap items-center">
+                                <div class="">
                                         <span class="block text-sm text-goldenrod">
                                             Kategorie
                                         </span>
-                                        <span class="block text-h3 font-bold text-deep-sea">
-                                            {{ project.title }}
-                                        </span>
-                                    </div>
-
-                                    <div class="cursor-pointer" @click="modal =! modal">
-                                        <svg class="fill-goldenrod " width="14" height="13" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M8.53906 6.5L12.5625 2.51562L13.3828 1.69531C13.5 1.57812 13.5 1.38281 13.3828 1.22656L12.5234 0.367188C12.3672 0.25 12.1719 0.25 12.0547 0.367188L7.25 5.21094L2.40625 0.367188C2.28906 0.25 2.09375 0.25 1.9375 0.367188L1.07812 1.22656C0.960938 1.38281 0.960938 1.57812 1.07812 1.69531L5.92188 6.5L1.07812 11.3438C0.960938 11.4609 0.960938 11.6562 1.07812 11.8125L1.9375 12.6719C2.09375 12.7891 2.28906 12.7891 2.40625 12.6719L7.25 7.82812L11.2344 11.8516L12.0547 12.6719C12.1719 12.7891 12.3672 12.7891 12.5234 12.6719L13.3828 11.8125C13.5 11.6562 13.5 11.4609 13.3828 11.3438L8.53906 6.5Z"
-                                                  />
-                                        </svg>
-                                    </div>
+                                    <span x-text="activeProject.title" class="block text-h3 font-bold text-deep-sea"></span>
                                 </div>
-                                <div class="mt-5 sm:mt-6">
+
+                                <div class="cursor-pointer" @click="modal = false; bodyLocked = false;">
+                                    <svg class="fill-goldenrod " width="14" height="13" viewBox="0 0 14 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M8.53906 6.5L12.5625 2.51562L13.3828 1.69531C13.5 1.57812 13.5 1.38281 13.3828 1.22656L12.5234 0.367188C12.3672 0.25 12.1719 0.25 12.0547 0.367188L7.25 5.21094L2.40625 0.367188C2.28906 0.25 2.09375 0.25 1.9375 0.367188L1.07812 1.22656C0.960938 1.38281 0.960938 1.57812 1.07812 1.69531L5.92188 6.5L1.07812 11.3438C0.960938 11.4609 0.960938 11.6562 1.07812 11.8125L1.9375 12.6719C2.09375 12.7891 2.28906 12.7891 2.40625 12.6719L7.25 7.82812L11.2344 11.8516L12.0547 12.6719C12.1719 12.7891 12.3672 12.7891 12.5234 12.6719L13.3828 11.8125C13.5 11.6562 13.5 11.4609 13.3828 11.3438L8.53906 6.5Z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="mt-5 sm:mt-6">
+                                <template x-if="activeImage">
                                     <div class="rounded-2xl overflow-hidden aspect-square mb-5">
-                                        <img x-bind:src="image.detail"
+                                        <img x-bind:src="activeImage.detail"
                                              x-transition:enter="ease-out duration-300"
                                              x-transition:enter-start="opacity-0 translate-y-full"
                                              x-transition:enter-end="opacity-100 translate-y-0"
@@ -97,34 +93,29 @@
                                              x-transition:leave-end="opacity-0 translate-y-full"
                                              class="w-full h-full object-cover" alt=""/>
                                     </div>
-                                    <p class="text-sm text-deep-sea text-center opacity-80" x-text="image.content">
-                                    </p>
-                                </div>
+                                    <p class="text-sm text-deep-sea text-center opacity-80" x-text="activeImage.content"></p>
+                                </template>
+                            </div>
+                            <div class="flex flex-row flex-nowrap space-x-2.5 overflow-x-scroll pt-8">
                                 <div class="flex flex-row flex-nowrap space-x-2.5 overflow-x-scroll pt-8">
-                                    {% for projectImage in project.images %}
-                                        {% if loop.first %}
-                                            <span x-init="image = '{{ vich_uploader_asset(projectImage, 'imageFile') }}'"></span>
-                                        {% endif %}
+                                    <template x-for="image in activeProject.images">
                                         <div class="w-16 h-16 rounded-2xl overflow-hidden flex-none cursor-pointer"
-                                             :class="image.id == '{{ projectImage.id }}' ? '' : 'opacity-40'"
-                                             @click="image = {
-                                                 id: '{{ projectImage.id }}',
-                                                 detail: '{{ vich_uploader_asset(projectImage, 'imageFile') }}',
-                                                 preview: '{{ vich_uploader_asset(projectImage, 'imageFile') }}',
-                                                 content: '{{ projectImage.content }}'}">
-
-                                            <img src="{{ vich_uploader_asset(projectImage, 'imageFile') }}"
-                                                 class="w-full h-full object-cover" alt=""/>
+                                             :class="activeImage === image ? '' : 'opacity-40'"
+                                             @click="activeImage = image">
+                                            <img x-bind:src="image.thumb"
+                                                 x-bind:alt="image.content"
+                                                 class="w-full h-full object-cover"
+                                                 @click="modal = true; bodyLocked = true;"
+                                            />
                                         </div>
-                                    {% endfor %}
+                                    </template>
                                 </div>
                             </div>
                         </div>
                     </div>
-                {% endfor %}
+                </div>
             </div>
         </div>
-
     {% endif %}
 
 </div>
